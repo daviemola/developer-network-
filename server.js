@@ -5,6 +5,9 @@ const app = express()
 
 connectDB()
 
+//init middleware
+app.use(express.json({ extended: false }))
+
 app.get('/', (req, res) => {
   res.send('API running')
 })
@@ -19,9 +22,9 @@ const PORT = process.env.PORT || 5000
 
 app.listen(PORT, () => `Server running on port ${PORT}`)
 
-//handle unhandled promise rejections
-process.on('unhandledRejection', (err, promise) => {
-  console.log(`Error: ${err.message}`)
-  //close server & exit process
-  server.close(() => process.exit(1))
-})
+// //handle unhandled promise rejections
+// process.on('unhandledRejection', (err, promise) => {
+//   console.log(`Error: ${err.message}`)
+//   //close server & exit process
+//   server.close(() => process.exit(1))
+// })
